@@ -63,7 +63,7 @@ function Graph1() {
 
   const COLORS = ['#FF8042', '#0088FE', '#00C49F', '#FFBB28'];
   return (
-    <PieChart width={900} height={500}>
+    <PieChart width={400} height={500}>
       <Pie
         data={data}
         dataKey="value"
