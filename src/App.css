@@ -9,3 +9,17 @@
 *::after {
 	box-sizing: border-box;
 }
+
+body {
+  --accent: #969AFF;
+  --light: #f4f3ee;
+  --dark: #413a2e;
+  background-color: var(--light);
+  color: var(--dark);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 500px;
+}
