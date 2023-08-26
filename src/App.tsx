@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const id = setTimeout(() => {
       setShow(false);
-    }, 100);
+    }, 4300);
     return () => {
       clearTimeout(id);
     };
