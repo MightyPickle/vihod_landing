@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import {
-  YES, NO, OTHER, enumValues,
+  YES, NO, OTHER, enumPortraitValues, enumDiscriminationQuestionsValues,
 } from '../data/const';
-import { UserPortraitQuestions } from '../data/enums/enumQuestionsPortrait';
+import { UserPortraitQuestions } from '../data/enums/portrait/enumQuestionsPortrait';
 import {
   ClassmatesColleaguesAwareness,
   EducationLevel,
@@ -14,14 +14,38 @@ import {
   SettlementType,
   SexualOrientation,
   SocialCircle, SocialCircleAttitude,
-} from '../data/enums/enumAnswersPortrait';
+} from '../data/enums/portrait/enumAnswersPortrait';
 import { filterDataByEnum } from '../data/utils/filterDataByEnum';
+import { EmploymentQuestions, ViolenceQuestions } from '../data/enums/discrimination/enumQuestionsDiscrimination';
+import { ViolenceAnswers } from '../data/enums/discrimination/enumAnswersDiscrimination';
 
+// @ts-ignore
 const DataContext = React.createContext();
 
+const getPortraitData = (newData: Record<string, string>[]) => newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
+  // @ts-ignore
+  if (enumPortraitValues.includes(key)) {
+    // @ts-ignore
+    // eslint-disable-next-line no-param-reassign
+    filteredObj[key] = value;
+  }
+  return filteredObj;
+}, {}));
+
+const getDiscriminationData = (newData: Record<string, string>[]) => newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
+  // @ts-ignore
+  if (enumDiscriminationQuestionsValues.includes(key)) {
+    // @ts-ignore
+    // eslint-disable-next-line no-param-reassign
+    filteredObj[key] = value;
+  }
+  return filteredObj;
+}, {}));
+
 function DataContextProvider({ children }: { children: any }) {
-  const [data, setData] = useState([]);
-  const [portraitData, setPortraitData] = useState([]);
+  const [data, setData] = useState<Record<string, string>[]>([]);
+  const [portraitData, setPortraitData] = useState<Record<string, string>[]>([]);
+  const [discriminationData, setDiscriminationData] = useState<Record<string, string>[]>([]);
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -30,15 +54,8 @@ function DataContextProvider({ children }: { children: any }) {
           .then((result) => result.json())
           .then((newData) => {
             setData(newData);
-            const newPortraitData = newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
-            // @ts-ignore
-              if (enumValues.includes(key)) {
-              // eslint-disable-next-line no-param-reassign
-                filteredObj[key] = value;
-              }
-              return filteredObj;
-            }, {}));
-            setPortraitData(newPortraitData);
+            setPortraitData(getPortraitData(newData));
+            setDiscriminationData(getDiscriminationData(newData));
           });
       }
     }, 4400);
@@ -145,10 +162,44 @@ function DataContextProvider({ children }: { children: any }) {
 
   // Регионы
   const regionData = Object.values(Regions).reduce((regionObjData, regionKey) => {
+    // @ts-ignore
     // eslint-disable-next-line no-param-reassign
     regionObjData[regionKey] = filterDataByEnum(portraitData, UserPortraitQuestions.REGION, regionKey);
     return regionObjData;
   }, {});
+
+  // Дискриминация
+  // Учеба/работа
+  const employmentDiscriminationData = {
+    pressureData: filterDataByEnum(discriminationData, EmploymentQuestions.PRESSURE_DUE_TO_IDENTITY, YES),
+    jobLossData: filterDataByEnum(discriminationData, EmploymentQuestions.JOB_OR_EDUCATION_LOSS, YES),
+  };
+
+  // Насилие
+  const violenceDiscriminationData = {
+    physicalViolenceData: filterDataByEnum(discriminationData, ViolenceQuestions.PHYSICAL_VIOLENCE, YES),
+    sexualViolenceData: filterDataByEnum(discriminationData, ViolenceQuestions.SEXUAL_VIOLENCE, YES),
+    threatsData: filterDataByEnum(discriminationData, ViolenceQuestions.THREATS_OF_PHYSICAL_VIOLENCE, YES),
+    domesticViolenceData: filterDataByEnum(discriminationData, ViolenceQuestions.DOMESTIC_VIOLENCE, YES),
+    propertyDamageData: filterDataByEnum(discriminationData, ViolenceQuestions.PROPERTY_DAMAGE, YES),
+    robberyData: filterDataByEnum(discriminationData, ViolenceQuestions.ROBBERY, YES),
+    blackmailData: filterDataByEnum(discriminationData, ViolenceQuestions.BLACKMAIL, YES),
+    illegalDataUseData: filterDataByEnum(discriminationData, ViolenceQuestions.ILLEGAL_USE_OF_PERSONAL_DATA, YES),
+    onlineHarassmentData: filterDataByEnum(discriminationData, ViolenceQuestions.ONLINE_HARASSMENT, YES),
+    unlawfulDetentionData: filterDataByEnum(discriminationData, ViolenceQuestions.UNLAWFUL_DETENTION_OR_ARREST, YES),
+  };
+
+  // Соотнесение сталкивания и обращения в полицию (или намерения обращения)
+  const crimesPoliceEncounterData = {
+    noEncounterReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.NO_ENCOUNTER_WOULD_REPORT_TO_POLICE),
+    encounterReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.ENCOUNTERED_AND_REPORTED_TO_POLICE),
+    encounterNotReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.ENCOUNTERED_BUT_DID_NOT_REPORT_TO_POLICE),
+    noEncounterNotReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.NO_ENCOUNTER_WOULD_NOT_REPORT_TO_POLICE),
+  };
+
+  const filteredDiscriminationData = {
+    violenceDiscriminationData, employmentDiscriminationData, crimesPoliceEncounterData,
+  };
 
   const filteredPortraitData = {
     genderData,
@@ -168,6 +219,7 @@ function DataContextProvider({ children }: { children: any }) {
     <DataContext.Provider value={{
       setData,
       data,
+      filteredDiscriminationData,
       ...filteredPortraitData,
     }}
     >

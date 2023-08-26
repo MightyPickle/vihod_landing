@@ -1,6 +1,6 @@
 import { Bar } from 'recharts';
 import React from 'react';
-import { UserPortraitQuestions } from '../../../data/enums/enumQuestionsPortrait';
+import { UserPortraitQuestions } from '../../../data/enums/portrait/enumQuestionsPortrait';
 import { NO, YES } from '../../../data/const';
 import { filterDataByEnum } from '../../../data/utils/filterDataByEnum';
 import type { Props } from './types';
