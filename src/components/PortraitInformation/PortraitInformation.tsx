@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph1 from '../rechartComponents/Orientation/OrientationGraph';
+import OrientationGraph from '../rechartComponents/Orientation/OrientationGraph';
 import { Column, FlexSection } from './Style';
 import Education from '../Education/Education';
 import FriendsGraph from '../rechartComponents/Social/FriendsGraph';
@@ -16,7 +16,7 @@ function PortraitInformation() {
           </p>
         </Column>
         <Column>
-          <Graph1 />
+          <OrientationGraph />
         </Column>
       </FlexSection>
       <FlexSection>
