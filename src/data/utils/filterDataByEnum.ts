@@ -1,1 +1,1 @@
-export const filterDataByEnum = (portraitData, questionEnum, enumValue) => portraitData.filter((el) => el[questionEnum] === enumValue);
+export const filterDataByEnum = (portraitData: Record<string, string>[], questionEnum: string, enumValue: string) => portraitData?.filter((el) => el[questionEnum] === enumValue);
