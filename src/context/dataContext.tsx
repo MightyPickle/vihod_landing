@@ -16,6 +16,7 @@ function DataContextProvider({ children }: { children: any }) {
     if (!data.length) {
       fetch('http://localhost:3001/data')
         .then((result) => result.json())
+      //   TODO: это только для портрета, потом поменять
         .then(((res) => res.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
         // @ts-ignore
           if (enumValues.includes(key)) {
