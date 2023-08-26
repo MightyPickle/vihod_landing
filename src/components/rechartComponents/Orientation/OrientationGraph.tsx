@@ -1,13 +1,17 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Pie, PieChart, Cell, Tooltip,
+  Cell,
+  Pie, PieChart,
+  Tooltip,
+  ResponsiveContainer,
 } from 'recharts';
-import { useDataContext } from '../../context/dataContext';
+import { useDataContext } from '../../../context/dataContext';
+import CustomTooltip from './CustomTooltip';
 
 function Graph1() {
-  const { filteredData } = useDataContext();
-  const { orientationData, cisTransData } = filteredData;
+  const { orientationData, cisTransData } = useDataContext();
+
   const data = [
     {
       name: 'Гомосексуальные люди',
@@ -59,29 +63,29 @@ function Graph1() {
     );
   };
 
-  const [activeIndex, setActiveIndex] = useState();
-
   const COLORS = ['#FF8042', '#0088FE', '#00C49F', '#FFBB28'];
   return (
-    <PieChart width={900} height={500}>
-      <Pie
-        data={data}
-        dataKey="value"
-        nameKey="name"
-        cx="50%"
-        cy="50%"
-        outerRadius={100}
-        fill="#8884d8"
-        label={renderCustomizedLabel}
-
-      >
-        { data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index]} />
-        ))}
-      </Pie>
-      <Pie data={data2} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={110} outerRadius={130} fill="#82ca9d" label />
-      <Tooltip />
-    </PieChart>
+    <ResponsiveContainer width={600} height={500}>
+      <PieChart>
+        <Pie
+          data={data}
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius={100}
+          fill="#8884d8"
+          label={renderCustomizedLabel}
+        >
+          { data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index]} />
+          ))}
+        </Pie>
+        <Pie data={data2} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={110} outerRadius={130} fill="#82ca9d" label />
+        <Tooltip content={<CustomTooltip />} />
+        {/* <Legend align="right" layout="vertical" verticalAlign="middle" /> */}
+      </PieChart>
+    </ResponsiveContainer>
   );
 }
 

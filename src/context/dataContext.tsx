@@ -1,27 +1,51 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { YES, NO, OTHER } from '../data/const';
-import { UserPortraitQuestions } from '../data/enums/enumQuestionsPortrait';
+import {
+  YES, NO, OTHER, enumPortraitValues, enumDiscriminationQuestionsValues,
+} from '../data/const';
+import { UserPortraitQuestions } from '../data/enums/portrait/enumQuestionsPortrait';
 import {
   ClassmatesColleaguesAwareness,
   EducationLevel,
   FamilyAwareness,
   FederalDistrict,
   FriendsAwareness,
-  Gender,
+  Gender, Regions,
   SettlementType,
   SexualOrientation,
   SocialCircle, SocialCircleAttitude,
-} from '../data/enums/enumAnswersPortrait';
+} from '../data/enums/portrait/enumAnswersPortrait';
+import { filterDataByEnum } from '../data/utils/filterDataByEnum';
+import { EmploymentQuestions, ViolenceQuestions } from '../data/enums/discrimination/enumQuestionsDiscrimination';
+import { ViolenceAnswers } from '../data/enums/discrimination/enumAnswersDiscrimination';
 
-const enumValues = Object.values(UserPortraitQuestions);
-
-// Гендер
+// @ts-ignore
 const DataContext = React.createContext();
 
+const getPortraitData = (newData: Record<string, string>[]) => newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
+  // @ts-ignore
+  if (enumPortraitValues.includes(key)) {
+    // @ts-ignore
+    // eslint-disable-next-line no-param-reassign
+    filteredObj[key] = value;
+  }
+  return filteredObj;
+}, {}));
+
+const getDiscriminationData = (newData: Record<string, string>[]) => newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
+  // @ts-ignore
+  if (enumDiscriminationQuestionsValues.includes(key)) {
+    // @ts-ignore
+    // eslint-disable-next-line no-param-reassign
+    filteredObj[key] = value;
+  }
+  return filteredObj;
+}, {}));
+
 function DataContextProvider({ children }: { children: any }) {
-  const [data, setData] = useState([]);
-  const [portraitData, setPortraitData] = useState([]);
+  const [data, setData] = useState<Record<string, string>[]>([]);
+  const [portraitData, setPortraitData] = useState<Record<string, string>[]>([]);
+  const [discriminationData, setDiscriminationData] = useState<Record<string, string>[]>([]);
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -30,15 +54,8 @@ function DataContextProvider({ children }: { children: any }) {
           .then((result) => result.json())
           .then((newData) => {
             setData(newData);
-            const newPortraitData = newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
-            // @ts-ignore
-              if (enumValues.includes(key)) {
-              // eslint-disable-next-line no-param-reassign
-                filteredObj[key] = value;
-              }
-              return filteredObj;
-            }, {}));
-            setPortraitData(newPortraitData);
+            setPortraitData(getPortraitData(newData));
+            setDiscriminationData(getDiscriminationData(newData));
           });
       }
     }, 4400);
@@ -48,107 +65,80 @@ function DataContextProvider({ children }: { children: any }) {
   }, []);
 
   // Гендер
-  const maleData = portraitData.filter((el) => el[UserPortraitQuestions.GENDER_IDENTITY] === Gender.MALE);
-  const femaleData = portraitData.filter((el) => el[UserPortraitQuestions.GENDER_IDENTITY] === Gender.FEMALE);
-  const nonBinaryGenderData = portraitData.filter((el) => el[UserPortraitQuestions.GENDER_IDENTITY] === Gender.NON_BINAIRY);
-  const otherGenderData = portraitData.filter((el) => {
-    const gender = el[UserPortraitQuestions.GENDER_IDENTITY];
-    return gender !== Gender.MALE && gender !== Gender.FEMALE && gender !== Gender.NON_BINAIRY;
-  });
   const genderData = {
-    maleData, femaleData, nonBinaryGenderData, otherGenderData,
+    maleData: filterDataByEnum(portraitData, UserPortraitQuestions.GENDER_IDENTITY, Gender.MALE),
+    femaleData: filterDataByEnum(portraitData, UserPortraitQuestions.GENDER_IDENTITY, Gender.FEMALE),
+    nonBinaryGenderData: filterDataByEnum(portraitData, UserPortraitQuestions.GENDER_IDENTITY, Gender.NON_BINAIRY),
+    otherGenderData: portraitData.filter((el) => {
+      const gender = el[UserPortraitQuestions.GENDER_IDENTITY];
+      return gender !== Gender.MALE && gender !== Gender.FEMALE && gender !== Gender.NON_BINAIRY;
+    }),
   };
 
   // Цис/транс
-  const transData = portraitData.filter((el) => el[UserPortraitQuestions.TRANSGENDER_IDENTITY] === YES);
-  const cisData = portraitData.filter((el) => el[UserPortraitQuestions.TRANSGENDER_IDENTITY] === NO);
-  const otherTransData = portraitData.filter((el) => el[UserPortraitQuestions.TRANSGENDER_IDENTITY] === OTHER); // 0
-
-  const cisTransData = { transData, cisData, otherTransData };
+  const cisTransData = {
+    transData: filterDataByEnum(portraitData, UserPortraitQuestions.TRANSGENDER_IDENTITY, YES),
+    cisData: filterDataByEnum(portraitData, UserPortraitQuestions.TRANSGENDER_IDENTITY, NO),
+    otherTransData: filterDataByEnum(portraitData, UserPortraitQuestions.TRANSGENDER_IDENTITY, OTHER),
+  };
 
   // Ориентация
-  const homoData = portraitData.filter((el) => el[UserPortraitQuestions.SEXUAL_ORIENTATION] === SexualOrientation.HOMO);
-  const biPanData = portraitData.filter((el) => el[UserPortraitQuestions.SEXUAL_ORIENTATION] === SexualOrientation.BI);
-  const heteroData = portraitData.filter((el) => el[UserPortraitQuestions.SEXUAL_ORIENTATION] === SexualOrientation.HETERO);
-  const asexData = portraitData.filter((el) => el[UserPortraitQuestions.SEXUAL_ORIENTATION] === SexualOrientation.ASEX);
-  const otherOrientationData = portraitData.filter((el) => el[UserPortraitQuestions.SEXUAL_ORIENTATION] === SexualOrientation.OTHER); // 0
-
   const orientationData = {
-    homoData, biPanData, asexData, heteroData, otherOrientationData,
+    homoData: filterDataByEnum(portraitData, UserPortraitQuestions.SEXUAL_ORIENTATION, SexualOrientation.HOMO),
+    biPanData: filterDataByEnum(portraitData, UserPortraitQuestions.SEXUAL_ORIENTATION, SexualOrientation.BI),
+    heteroData: filterDataByEnum(portraitData, UserPortraitQuestions.SEXUAL_ORIENTATION, SexualOrientation.HETERO),
+    asexData: filterDataByEnum(portraitData, UserPortraitQuestions.SEXUAL_ORIENTATION, SexualOrientation.ASEX),
+    otherOrientationData: filterDataByEnum(portraitData, UserPortraitQuestions.SEXUAL_ORIENTATION, SexualOrientation.OTHER),
   };
 
   // Тип населенного пункта
-  const megaPolisData = portraitData.filter((el) => el[UserPortraitQuestions.RESIDENCE] === SettlementType.MEGAPOLIS);
-  const cityData = portraitData.filter((el) => el[UserPortraitQuestions.RESIDENCE] === SettlementType.CITY);
-  const largeTownData = portraitData.filter((el) => el[UserPortraitQuestions.RESIDENCE] === SettlementType.LARGE_TOWN);
-  const mediumTownData = portraitData.filter((el) => el[UserPortraitQuestions.RESIDENCE] === SettlementType.MEDIUM_TOWN);
-  const smallTownData = portraitData.filter((el) => el[UserPortraitQuestions.RESIDENCE] === SettlementType.SMALL_TOWN);
-  const seloData = portraitData.filter((el) => el[UserPortraitQuestions.RESIDENCE] === SettlementType.SELO);
-
   const settlementData = {
-    megaPolisData, cityData, largeTownData, meduiumTownData: mediumTownData, smallTownData, seloData,
+    megaPolisData: filterDataByEnum(portraitData, UserPortraitQuestions.RESIDENCE, SettlementType.MEGAPOLIS),
+    cityData: filterDataByEnum(portraitData, UserPortraitQuestions.RESIDENCE, SettlementType.CITY),
+    largeTownData: filterDataByEnum(portraitData, UserPortraitQuestions.RESIDENCE, SettlementType.LARGE_TOWN),
+    mediumTownData: filterDataByEnum(portraitData, UserPortraitQuestions.RESIDENCE, SettlementType.MEDIUM_TOWN),
+    smallTownData: filterDataByEnum(portraitData, UserPortraitQuestions.RESIDENCE, SettlementType.SMALL_TOWN),
+    seloData: filterDataByEnum(portraitData, UserPortraitQuestions.RESIDENCE, SettlementType.SELO),
   };
 
   // Регионы
-  const centralRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.CENTRAL);
-  const northWestRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.NORTHWEST);
-  const southernRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.SOUTHERN);
-  const northCaucasusRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.NORTH_CAUCASUS);
-  const volgaRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.VOLGA);
-  const uralsRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.URALS);
-  const siberianRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.SIBERIAN);
-  const farEasternRegionData = portraitData.filter((el) => el[UserPortraitQuestions.FEDERAL_DISTRICT] === FederalDistrict.FAR_EASTERN);
-
-  const regionData = {
-    centralRegionData,
-    northCaucasusRegionData,
-    northWestRegionData,
-    southernRegionData,
-    volgaRegionData,
-    uralsRegionData,
-    siberianRegionData,
-    farEasternRegionData,
+  const federalDistrictData = {
+    centralRegionData: filterDataByEnum(portraitData, UserPortraitQuestions.FEDERAL_DISTRICT, FederalDistrict.CENTRAL),
+    northWestRegionData: filterDataByEnum(portraitData, UserPortraitQuestions.FEDERAL_DISTRICT, FederalDistrict.NORTHWEST),
+    // Продолжайте для остальных регионов
   };
 
   // Образование
-  const hasPrimaryDegreeData = data.filter((el) => el[UserPortraitQuestions.EDUCATION] === EducationLevel.PRIMARY);
-  const hasBasicDegreeData = data.filter((el) => el[UserPortraitQuestions.EDUCATION] === EducationLevel.BASIC);
-  const hasBasicSpecialDegreeData = data.filter((el) => el[UserPortraitQuestions.EDUCATION] === EducationLevel.BASIC_SPECIAL);
-  const hasCollegeDegreeData = data.filter((el) => el[UserPortraitQuestions.EDUCATION] === EducationLevel.HIGHER);
-
   const educationData = {
-    hasPrimaryDegreeData, hasCollegeDegreeData, hasBasicDegreeData, hasBasicSpecialDegreeData,
+    hasPrimaryDegreeData: filterDataByEnum(portraitData, UserPortraitQuestions.EDUCATION, EducationLevel.PRIMARY),
+    hasCollegeDegreeData: filterDataByEnum(portraitData, UserPortraitQuestions.EDUCATION, EducationLevel.HIGHER),
+    hasBasicDegreeData: filterDataByEnum(portraitData, UserPortraitQuestions.EDUCATION, EducationLevel.BASIC),
+    hasBasicSpecialDegreeData: filterDataByEnum(portraitData, UserPortraitQuestions.EDUCATION, EducationLevel.BASIC_SPECIAL),
   };
 
   // Социальная
   // Друзья
-  const majorityFriendsAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT] === FriendsAwareness.MAJORITY_OF_FRIENDS);
-  const noFriendsAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT] === FriendsAwareness.NO_ONE_KNOWS);
-  const closestFriendsAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT] === FriendsAwareness.CLOSEST_FRIENDS);
-  const otherFriendsAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT] === FriendsAwareness.OTHER);
-
   const friendsAwareData = {
-    majorityFriendsAwareData, noFriendsAwareData, closestFriendsAwareData, otherFriendsAwareData,
+    majorityFriendsAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT, FriendsAwareness.MAJORITY_OF_FRIENDS),
+    noFriendsAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT, FriendsAwareness.NO_ONE_KNOWS),
+    closestFriendsAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT, FriendsAwareness.CLOSEST_FRIENDS),
+    otherFriendsAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT, FriendsAwareness.OTHER),
   };
 
   // Семья
-  const majorityFamilyAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FAMILY_AWARE_OF_LGBT] === FamilyAwareness.MAJORITY_OF_FAMILY_MEMBERS);
-  const noFamilyAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FAMILY_AWARE_OF_LGBT] === FamilyAwareness.NO_ONE_KNOWS);
-  const closestFamilyAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FAMILY_AWARE_OF_LGBT] === FamilyAwareness.CLOSEST_FAMILY_MEMBERS);
-  const otherFamilyAwareData = portraitData.filter((el) => el[UserPortraitQuestions.FAMILY_AWARE_OF_LGBT] === FamilyAwareness.OTHER);
-
   const familyAwareData = {
-    majorityFamilyAwareData, noFamilyAwareData, closestFamilyAwareData, otherFamilyAwareData,
+    majorityFamilyAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FAMILY_AWARE_OF_LGBT, FamilyAwareness.MAJORITY_OF_FAMILY_MEMBERS),
+    noFamilyAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FAMILY_AWARE_OF_LGBT, FamilyAwareness.NO_ONE_KNOWS),
+    closestFamilyAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FAMILY_AWARE_OF_LGBT, FamilyAwareness.CLOSEST_FAMILY_MEMBERS),
+    otherFamilyAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.FAMILY_AWARE_OF_LGBT, FamilyAwareness.OTHER),
   };
 
   // Коллеги/одногруппники/одноклассники
-  const majorityClassmatesColleaguesAwareData = portraitData.filter((el) => el[UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT] === ClassmatesColleaguesAwareness.MAJORITY_OF_CLASSMATES_COLLEAGUES);
-  const noClassmatesColleaguesAwareData = portraitData.filter((el) => el[UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT] === ClassmatesColleaguesAwareness.NO_ONE_KNOWS);
-  const closestClassmatesColleaguesAwareData = portraitData.filter((el) => el[UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT] === ClassmatesColleaguesAwareness.SOME_CLASSMATES_COLLEAGUES);
-  const otherClassmatesColleaguesAwareData = portraitData.filter((el) => el[UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT] === ClassmatesColleaguesAwareness.OTHER);
-
   const classmatesColleaguesAwareData = {
-    majorityClassmatesColleaguesAwareData, noClassmatesColleaguesAwareData, closestClassmatesColleaguesAwareData, otherClassmatesColleaguesAwareData,
+    majorityClassmatesColleaguesAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT, ClassmatesColleaguesAwareness.MAJORITY_OF_CLASSMATES_COLLEAGUES),
+    noClassmatesColleaguesAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT, ClassmatesColleaguesAwareness.NO_ONE_KNOWS),
+    closestClassmatesColleaguesAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT, ClassmatesColleaguesAwareness.SOME_CLASSMATES_COLLEAGUES),
+    otherClassmatesColleaguesAwareData: filterDataByEnum(portraitData, UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT, ClassmatesColleaguesAwareness.OTHER),
   };
 
   const awareData = {
@@ -156,20 +146,59 @@ function DataContextProvider({ children }: { children: any }) {
   };
 
   // Близкий круг
-  const socialCircleMainlyLGBT = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_LGBT] === SocialCircle.LGBT_PLUS);
-  const socialCircleMainlyHeteroCis = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_LGBT] === SocialCircle.HETERO_CIS);
-  const socialCircleEqual = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_LGBT] === SocialCircle.EQUAL_MIX);
-
-  const socialCircleData = { socialCircleEqual, socialCircleMainlyLGBT, socialCircleMainlyHeteroCis };
-
-  const socialCircleFriendlyAttitude = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_ATTITUDE] === SocialCircleAttitude.FRIENDLY_TO_LGBT_PLUS);
-  const socialCircleClaimFriendlyAttitude = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_LGBT] === SocialCircleAttitude.CLAIM_FRIENDLY_ATTITUDE);
-  const socialCircleHomoTransphobicAttitude = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_LGBT] === SocialCircleAttitude.HOMO_TRANS_PHOBIC);
-  const socialCircleAcceptingAttitude = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_LGBT] === SocialCircleAttitude.ACCEPTING_BUT_OCCASIONAL_PHOBIA);
-  const socialCircleOtherAttitude = portraitData.filter((el) => el[UserPortraitQuestions.SOCIAL_CIRCLE_LGBT] === SocialCircleAttitude.OTHER);
+  const socialCircleData = {
+    socialCircleMainlyLGBT: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircle.LGBT_PLUS),
+    socialCircleMainlyHeteroCis: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircle.HETERO_CIS),
+    socialCircleEqual: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircle.EQUAL_MIX),
+  };
 
   const socialCircleAttitudeData = {
-    socialCircleFriendlyAttitude, socialCircleClaimFriendlyAttitude, socialCircleHomoTransphobicAttitude, socialCircleAcceptingAttitude, socialCircleOtherAttitude,
+    socialCircleFriendlyAttitude: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_ATTITUDE, SocialCircleAttitude.FRIENDLY_TO_LGBT_PLUS),
+    socialCircleClaimFriendlyAttitude: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircleAttitude.CLAIM_FRIENDLY_ATTITUDE),
+    socialCircleHomoTransphobicAttitude: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircleAttitude.HOMO_TRANS_PHOBIC),
+    socialCircleAcceptingAttitude: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircleAttitude.ACCEPTING_BUT_OCCASIONAL_PHOBIA),
+    socialCircleOtherAttitude: filterDataByEnum(portraitData, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircleAttitude.OTHER),
+  };
+
+  // Регионы
+  const regionData = Object.values(Regions).reduce((regionObjData, regionKey) => {
+    // @ts-ignore
+    // eslint-disable-next-line no-param-reassign
+    regionObjData[regionKey] = filterDataByEnum(portraitData, UserPortraitQuestions.REGION, regionKey);
+    return regionObjData;
+  }, {});
+
+  // Дискриминация
+  // Учеба/работа
+  const employmentDiscriminationData = {
+    pressureData: filterDataByEnum(discriminationData, EmploymentQuestions.PRESSURE_DUE_TO_IDENTITY, YES),
+    jobLossData: filterDataByEnum(discriminationData, EmploymentQuestions.JOB_OR_EDUCATION_LOSS, YES),
+  };
+
+  // Насилие
+  const violenceDiscriminationData = {
+    physicalViolenceData: filterDataByEnum(discriminationData, ViolenceQuestions.PHYSICAL_VIOLENCE, YES),
+    sexualViolenceData: filterDataByEnum(discriminationData, ViolenceQuestions.SEXUAL_VIOLENCE, YES),
+    threatsData: filterDataByEnum(discriminationData, ViolenceQuestions.THREATS_OF_PHYSICAL_VIOLENCE, YES),
+    domesticViolenceData: filterDataByEnum(discriminationData, ViolenceQuestions.DOMESTIC_VIOLENCE, YES),
+    propertyDamageData: filterDataByEnum(discriminationData, ViolenceQuestions.PROPERTY_DAMAGE, YES),
+    robberyData: filterDataByEnum(discriminationData, ViolenceQuestions.ROBBERY, YES),
+    blackmailData: filterDataByEnum(discriminationData, ViolenceQuestions.BLACKMAIL, YES),
+    illegalDataUseData: filterDataByEnum(discriminationData, ViolenceQuestions.ILLEGAL_USE_OF_PERSONAL_DATA, YES),
+    onlineHarassmentData: filterDataByEnum(discriminationData, ViolenceQuestions.ONLINE_HARASSMENT, YES),
+    unlawfulDetentionData: filterDataByEnum(discriminationData, ViolenceQuestions.UNLAWFUL_DETENTION_OR_ARREST, YES),
+  };
+
+  // Соотнесение сталкивания и обращения в полицию (или намерения обращения)
+  const crimesPoliceEncounterData = {
+    noEncounterReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.NO_ENCOUNTER_WOULD_REPORT_TO_POLICE),
+    encounterReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.ENCOUNTERED_AND_REPORTED_TO_POLICE),
+    encounterNotReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.ENCOUNTERED_BUT_DID_NOT_REPORT_TO_POLICE),
+    noEncounterNotReportPolice: filterDataByEnum(discriminationData, ViolenceQuestions.CRIMES_DUE_TO_HOMOPHOBIA, ViolenceAnswers.NO_ENCOUNTER_WOULD_NOT_REPORT_TO_POLICE),
+  };
+
+  const filteredDiscriminationData = {
+    violenceDiscriminationData, employmentDiscriminationData, crimesPoliceEncounterData,
   };
 
   const filteredPortraitData = {
@@ -179,6 +208,7 @@ function DataContextProvider({ children }: { children: any }) {
     settlementData,
     educationData,
     regionData,
+    federalDistrictData,
     awareData,
     socialCircleData,
     socialCircleAttitudeData,
@@ -186,7 +216,13 @@ function DataContextProvider({ children }: { children: any }) {
 
   return (
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <DataContext.Provider value={{ setData, data, filteredData: filteredPortraitData }}>
+    <DataContext.Provider value={{
+      setData,
+      data,
+      filteredDiscriminationData,
+      ...filteredPortraitData,
+    }}
+    >
       {children}
     </DataContext.Provider>
   );

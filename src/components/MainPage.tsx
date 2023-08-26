@@ -32,8 +32,10 @@ position: relative;
 `;
 
 function MainPage() {
-  const { filteredData } = useDataContext();
-  console.log(filteredData);
+  // @ts-ignore
+  const { regionData } = useDataContext();
+  // eslint-disable-next-line no-console
+  console.log(regionData);
   return (
     <Container
       initial={{ opacity: 0 }}
@@ -45,7 +47,6 @@ function MainPage() {
         <Donate />
         <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
         <PortraitInformation />
-        <Graph1 />
       </Wrapper>
 
     </Container>
