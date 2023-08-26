@@ -26,11 +26,11 @@ border: 1px solid rgba(244, 243, 238, 1);
 width: 100%;
 height: 100%;
 padding: 20px;
-overflow: scroll
-
+overflow: scroll;
 `;
 
 function MainPage() {
+  // @ts-ignore
   const { regionData } = useDataContext();
   // eslint-disable-next-line no-console
   console.log(regionData);
