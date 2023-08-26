@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { styled } from 'styled-components';
 import { useDataContext } from '../context/dataContext';
+import Graph1 from './rechartComponents/Graph1';
 
 const Container = styled(motion.div)`
 width: 100vw;
@@ -32,7 +33,7 @@ function MainPage() {
       animate={{ opacity: 1, transition: { duration: 3, ease: 'easeInOut' } }}
     >
       <Wrapper>
-        123
+        <Graph1 />
       </Wrapper>
 
     </Container>
