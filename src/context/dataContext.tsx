@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { YES, NO, OTHER } from '../data/const';
+import {
+  YES, NO, OTHER, enumValues,
+} from '../data/const';
 import { UserPortraitQuestions } from '../data/enums/enumQuestionsPortrait';
 import {
   ClassmatesColleaguesAwareness,
@@ -13,8 +15,7 @@ import {
   SexualOrientation,
   SocialCircle, SocialCircleAttitude,
 } from '../data/enums/enumAnswersPortrait';
-import { filterDataByEnum } from './utils/filterDataByEnum';
-import { enumValues } from './const';
+import { filterDataByEnum } from '../data/utils/filterDataByEnum';
 
 const DataContext = React.createContext();
 
