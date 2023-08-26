@@ -5,7 +5,6 @@ import Path1 from './PathElems/Path1';
 import Path2 from './PathElems/Path2';
 import PortraitInformation from './PortraitInformation/PortraitInformation';
 import { useDataContext } from '../context/dataContext';
-import Graph1 from './rechartComponents/Graph1';
 
 const Container = styled(motion.div)`
 width: 100vw;
@@ -42,7 +41,6 @@ function MainPage() {
       <Wrapper>
         <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
         <PortraitInformation />
-        <Graph1 />
       </Wrapper>
 
     </Container>
