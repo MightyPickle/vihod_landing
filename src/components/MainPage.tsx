@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { styled } from 'styled-components';
 import PortraitInformation from './PortraitInformation/PortraitInformation';
+import { useDataContext } from '../context/dataContext';
 
 const Container = styled(motion.div)`
 width: 100vw;
@@ -24,6 +25,8 @@ padding: 20px;
 `;
 
 function MainPage() {
+  const { filteredData } = useDataContext();
+  console.log(filteredData);
   return (
     <Container
       initial={{ opacity: 0 }}
