@@ -6,8 +6,8 @@ import {
 import { useDataContext } from '../../context/dataContext';
 
 function Graph1() {
-  const { filteredData } = useDataContext();
-  const { orientationData, cisTransData } = filteredData;
+  const { orientationData, cisTransData } = useDataContext();
+
   const data = [
     {
       name: 'Гомосексуальные люди',
