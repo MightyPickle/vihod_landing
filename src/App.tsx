@@ -2,9 +2,6 @@ import React from 'react';
 import './App.css';
 import './fonts/HelveticaNeue Bold.ttf';
 import './fonts/Stolzl-Regular.ttf';
-import { allData } from './data/data';
-
-console.log(allData);
 
 function App() {
   return (

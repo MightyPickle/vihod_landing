@@ -20,7 +20,7 @@
     "react"
   ],
   "rules": {
-    "max-len": ["error", { "code": 140 }],
+    "max-len": "off",
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
     "jsx-a11y/click-events-have-key-events": "warn",
