@@ -4,12 +4,12 @@ import { UserPortraitQuestions } from './enums/enumQuestionsPortrait';
 import { Gender, SexualOrientation } from './enums/enumAnswersPortrait';
 
 // Гендер
-export const maleData = allData.filter((el) => el[UserPortraitQuestions[UserPortraitQuestions.GENDER_IDENTITY]] === Gender.MALE);
-export const femaleData = allData.filter((el) => el[UserPortraitQuestions[UserPortraitQuestions.GENDER_IDENTITY]] === Gender.FEMALE);
-export const otherGenderData = allData.filter((el) => el[UserPortraitQuestions[UserPortraitQuestions.GENDER_IDENTITY]] === Gender.OTHER);
+export const maleData = allData.filter((el) => el[UserPortraitQuestions.GENDER_IDENTITY] === Gender.MALE);
+export const femaleData = allData.filter((el) => el[UserPortraitQuestions.GENDER_IDENTITY] === Gender.FEMALE);
+export const otherGenderData = allData.filter((el) => el[UserPortraitQuestions.GENDER_IDENTITY] === Gender.OTHER);
 
 // Цис/транс
-export const transData = allData.filter((el) => el[UserPortraitQuestions[UserPortraitQuestions.TRANSGENDER_IDENTITY]] === YES);
+export const transData = allData.filter((el) => el[UserPortraitQuestions.TRANSGENDER_IDENTITY] === YES);
 export const cisData = allData.filter((el) => el[UserPortraitQuestions.TRANSGENDER_IDENTITY] === NO);
 export const otherTransData = allData.filter((el) => el[UserPortraitQuestions.TRANSGENDER_IDENTITY] === OTHER);
 
