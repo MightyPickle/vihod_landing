@@ -29,8 +29,9 @@ padding: 20px;
 `;
 
 function MainPage() {
-  const { filteredData } = useDataContext();
-  console.log(filteredData);
+  const { regionData } = useDataContext();
+  // eslint-disable-next-line no-console
+  console.log(regionData);
   return (
     <Container
       initial={{ opacity: 0 }}
