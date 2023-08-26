@@ -24,22 +24,27 @@ function DataContextProvider({ children }: { children: any }) {
   const [portraitData, setPortraitData] = useState([]);
 
   useEffect(() => {
-    if (!data.length) {
-      fetch('http://localhost:3001/data')
-        .then((result) => result.json())
-        .then((newData) => {
-          setData(newData);
-          const newPortraitData = newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
+    const id = setTimeout(() => {
+      if (!data.length) {
+        fetch('http://localhost:3001/data')
+          .then((result) => result.json())
+          .then((newData) => {
+            setData(newData);
+            const newPortraitData = newData.map((obj) => Object.entries(obj).reduce((filteredObj, [key, value]) => {
             // @ts-ignore
-            if (enumValues.includes(key)) {
+              if (enumValues.includes(key)) {
               // eslint-disable-next-line no-param-reassign
-              filteredObj[key] = value;
-            }
-            return filteredObj;
-          }, {}));
-          setPortraitData(newPortraitData);
-        });
-    }
+                filteredObj[key] = value;
+              }
+              return filteredObj;
+            }, {}));
+            setPortraitData(newPortraitData);
+          });
+      }
+    }, 4300);
+    return () => {
+      clearTimeout(id);
+    };
   }, []);
 
   // Гендер
