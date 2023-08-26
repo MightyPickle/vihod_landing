@@ -135,4 +135,4 @@ dist
 .vs_code/
 .DS_Store
 
-src/data/answers.json
+server/answers.json

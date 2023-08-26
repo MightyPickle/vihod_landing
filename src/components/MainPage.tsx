@@ -3,6 +3,8 @@ import React from 'react';
 import { styled } from 'styled-components';
 import Path1 from './PathElems/Path1';
 import Path2 from './PathElems/Path2';
+import PortraitInformation from './PortraitInformation/PortraitInformation';
+import { useDataContext } from '../context/dataContext';
 
 const Container = styled(motion.div)`
 width: 100vw;
@@ -27,6 +29,8 @@ padding: 20px;
 `;
 
 function MainPage() {
+  const { filteredData } = useDataContext();
+  console.log(filteredData);
   return (
     <Container
       initial={{ opacity: 0 }}
@@ -34,7 +38,10 @@ function MainPage() {
     >
       <Path1 />
       <Path2 />
-      <Wrapper />
+      <Wrapper>
+        <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
+        <PortraitInformation />
+      </Wrapper>
 
     </Container>
   );
