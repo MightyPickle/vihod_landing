@@ -1,8 +1,8 @@
 import { Bar } from 'recharts';
 import React from 'react';
-import { UserPortraitQuestions } from '../../../data/enums/enumQuestionsPortrait';
+import { UserPortraitQuestions } from '../../../data/enums/portrait/enumQuestionsPortrait';
 import { filterDataByEnum } from '../../../data/utils/filterDataByEnum';
-import { SettlementType } from '../../../data/enums/enumAnswersPortrait';
+import { SettlementType } from '../../../data/enums/portrait/enumAnswersPortrait';
 import type { Props } from './types';
 import EducationGraphWrapper from './components/EducationGraphWrapper';
 

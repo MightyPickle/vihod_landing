@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { StyledNote } from '../Note/Style';
 import EducationTransCisGraph from './Graphs/EducationTransCisGraph';
-import { UserPortraitQuestions } from '../../data/enums/enumQuestionsPortrait';
+import { UserPortraitQuestions } from '../../data/enums/portrait/enumQuestionsPortrait';
 import {
   MinWrapper, Tab, Tabs, Wrapper,
 } from './Style';
