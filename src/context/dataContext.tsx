@@ -13,10 +13,8 @@ import {
   SexualOrientation,
   SocialCircle, SocialCircleAttitude,
 } from '../data/enums/enumAnswersPortrait';
-
-const enumValues = Object.values(UserPortraitQuestions);
-
-const filterDataByEnum = (portraitData, questionEnum, enumValue) => portraitData.filter((el) => el[questionEnum] === enumValue);
+import { filterDataByEnum } from './utils/filterDataByEnum';
+import { enumValues } from './const';
 
 const DataContext = React.createContext();
 
