@@ -7,37 +7,38 @@ import { useDataContext } from '../../context/dataContext';
 
 function Graph1() {
   const { filteredData } = useDataContext();
+  const { orientationData, cisTransData } = filteredData;
   const data = [
     {
       name: 'Гомосексуальные люди',
-      value: filteredData.homoData.length,
+      value: orientationData.homoData.length,
     },
     {
       name: 'Би/Пансексуальные люди',
-      value: filteredData.biPanData.length,
+      value: orientationData.biPanData.length,
     },
     {
       name: 'Гетеросексуальные люди',
-      value: filteredData.heteroData.length,
+      value: orientationData.heteroData.length,
     },
     {
       name: 'Асексуальные люди',
-      value: filteredData.asexData.length,
+      value: orientationData.asexData.length,
     },
     {
       name: 'Другое',
-      value: filteredData.otherOrientationData.length,
+      value: orientationData.otherOrientationData.length,
     },
   ];
   const data2 = [
     {
       name: 'Цисгендерные люди',
-      value: filteredData.cisData.length,
+      value: cisTransData.cisData.length,
     },
     {
       name: 'Трансгендерные люди',
-      value: filteredData.transData.length,
-    }
+      value: cisTransData.transData.length,
+    },
   ];
 
   const RADIAN = Math.PI / 180;
