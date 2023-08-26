@@ -46,6 +46,17 @@ const config = {
 					filename: 'assets/[name][contenthash][ext][query]',
 				},
 			},
+			{
+				test: /\.(woff(2)?|ttf|eot)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'fonts/[name][contenthash][ext][query]',
+				},
+			},
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"],
+			},
 		],
 	},
 	resolve: {
