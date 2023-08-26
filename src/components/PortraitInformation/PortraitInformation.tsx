@@ -1,22 +1,26 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-// const flexSection = styled.div`
-// display: flex;
-// `;
+const FlexSection = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+align-content: center;
+margin: 100px;
+`;
 
 function PortraitInformation() {
   return (
     <>
       <h2>Демографический портрет участников опроса</h2>
-      {/* <flexSection> */}
+      <FlexSection>
       <p>
         {' '}
         Наш массив данных составляют 6439 анкет. Из них 104 были собраны в формате личной коммуникации социальными работниками, 4480 – через социальные сети и таргетированную рекламу, а 1855 были получены с помощью рекламы
         в «Хорнете».
       </p>
       <div>график идентичности</div>
-      {/* </flexSection> */}
+      </FlexSection>
       <p>
         Трансгендерные люди составляют 18% от всех респондентов. Статистически
         они моложе: их средний возраст – 25,2 года, а медианный – 23 года. Практически

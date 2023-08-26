@@ -42,7 +42,7 @@ function MainPage() {
       <Wrapper>
         <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
         <PortraitInformation />
-        <Graph1 />
+        {/* <Graph1 /> */}
       </Wrapper>
 
     </Container>
