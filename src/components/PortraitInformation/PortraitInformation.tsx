@@ -1,7 +1,8 @@
 import React from 'react';
-import Graph1 from '../rechartComponents/Graph1';
+import OrientationGraph from '../rechartComponents/Orientation/OrientationGraph';
 import { Column, FlexSection } from './Style';
 import Education from '../Education/Education';
+import FriendsGraph from '../rechartComponents/Social/FriendsGraph';
 
 function PortraitInformation() {
   return (
@@ -15,14 +16,18 @@ function PortraitInformation() {
           </p>
         </Column>
         <Column>
-          <Graph1 />
+          <OrientationGraph />
         </Column>
       </FlexSection>
       <FlexSection>
         <h2>Образование</h2>
         <Education />
       </FlexSection>
-
+      <FlexSection>
+        <h2>Степень открытости и круг обращения</h2>
+        <div>{/* тут должен быть текст */}</div>
+        <FriendsGraph />
+      </FlexSection>
       <p>
         Трансгендерные люди составляют 18% от всех респондентов. Статистически
         они моложе: их средний возраст – 25,2 года, а медианный – 23 года. Практически
