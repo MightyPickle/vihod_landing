@@ -34,12 +34,9 @@ function MainPage() {
       animate={{ opacity: 1, transition: { duration: 3, ease: 'easeInOut' } }}
     >
       <Wrapper>
-<<<<<<< HEAD
-        <Graph1 />
-=======
         <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
         <PortraitInformation />
->>>>>>> 48af96db0c172e38b7067baa89502d4654d97d74
+        <Graph1 />
       </Wrapper>
 
     </Container>
