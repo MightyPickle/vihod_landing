@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import { styled } from 'styled-components';
+import PortraitInformation from './PortraitInformation/PortraitInformation';
 import { useDataContext } from '../context/dataContext';
 
 const Container = styled(motion.div)`
@@ -32,7 +33,8 @@ function MainPage() {
       animate={{ opacity: 1, transition: { duration: 3, ease: 'easeInOut' } }}
     >
       <Wrapper>
-        123
+        <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
+        <PortraitInformation />
       </Wrapper>
 
     </Container>

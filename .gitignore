@@ -134,4 +134,5 @@ dist
 .idea/
 .vs_code/
 .DS_Store
-./server/answers.json
+
+server/answers.json
