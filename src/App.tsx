@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import './fonts/HelveticaNeue Bold.ttf';
+import './fonts/Stolzl-Regular.ttf';
 import { AnimatePresence } from 'framer-motion';
 import Logo from './components/Logo';
 import MainPage from './components/MainPage';
@@ -11,7 +13,7 @@ function App() {
   useEffect(() => {
     const id = setTimeout(() => {
       setShow(false);
-    }, 100);
+    }, 4300);
     return () => {
       clearTimeout(id);
     };

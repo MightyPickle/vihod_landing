@@ -10,6 +10,27 @@
 	box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "HelveticaNeueBold";
+    src: local("HelveticaNeueBold"),
+      url("./fonts/HelveticaNeue Bold.ttf") format("truetype");
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: "Stolzl-Regular";
+    src: local("Stolzl-Regular"),
+      url("./fonts/Stolzl-Regular.ttf") format("truetype");
+    font-weight: 500;
+  }
+  
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'HelveticaNeueBold';
+}
+
+p, text {
+	font-family: 'Stolzl-Regular'; 
+}
 body {
   --accent: #969AFF;
   --light: #f4f3ee;
