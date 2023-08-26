@@ -7,9 +7,9 @@ export enum SexualOrientation {
 }
 
 export enum Gender {
-  MALE = 'Мужской',
-  FEMALE = 'Женский',
-  OTHER = 'Другое',
+  MALE = 'Мужчина',
+  FEMALE = 'Женщина',
+  NON_BINAIRY = 'Небинарный человек',
 }
 
 export enum SettlementType {
