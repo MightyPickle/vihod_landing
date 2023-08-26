@@ -1,12 +1,13 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import Graph1 from '../rechartComponents/Graph1';
 
 const FlexSection = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
 align-content: center;
-margin: 100px;
+margin: 20px;
 `;
 
 function PortraitInformation() {
@@ -19,7 +20,7 @@ function PortraitInformation() {
         Наш массив данных составляют 6439 анкет. Из них 104 были собраны в формате личной коммуникации социальными работниками, 4480 – через социальные сети и таргетированную рекламу, а 1855 были получены с помощью рекламы
         в «Хорнете».
       </p>
-      <div>график идентичности</div>
+      <Graph1 />
       </FlexSection>
       <p>
         Трансгендерные люди составляют 18% от всех респондентов. Статистически
