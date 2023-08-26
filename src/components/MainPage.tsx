@@ -6,6 +6,7 @@ import Path2 from './PathElems/Path2';
 import PortraitInformation from './PortraitInformation/PortraitInformation';
 import { useDataContext } from '../context/dataContext';
 import Graph1 from './rechartComponents/Graph1';
+import Donate from './PathElems/Donate';
 
 const Container = styled(motion.div)`
 width: 100vw;
@@ -25,8 +26,9 @@ backdrop-filter: blur(5.8px);
 border: 1px solid rgba(244, 243, 238, 1);
 width: 100%;
 height: 100%;
-padding: 20px;
-
+padding: 30px;
+overflow: scroll;
+position: relative;
 `;
 
 function MainPage() {
@@ -40,6 +42,7 @@ function MainPage() {
       <Path1 />
       <Path2 />
       <Wrapper>
+        <Donate />
         <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
         <PortraitInformation />
         <Graph1 />
