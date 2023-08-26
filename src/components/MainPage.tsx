@@ -29,9 +29,9 @@ padding: 20px;
 `;
 
 function MainPage() {
-  const { regionData } = useDataContext();
-  // eslint-disable-next-line no-console
-  console.log(regionData);
+  // const { regionData } = useDataContext();
+  // // eslint-disable-next-line no-console
+  // console.log(regionData);
   return (
     <Container
       initial={{ opacity: 0 }}

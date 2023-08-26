@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
 import {
-  Pie, PieChart, Cell, Tooltip,
+  Pie, PieChart, Cell, Tooltip, Legend,
 } from 'recharts';
 import { useDataContext } from '../../context/dataContext';
+import CustomTooltip from './CustomTooltip';
 
 function Graph1() {
   const { orientationData, cisTransData } = useDataContext();
@@ -63,7 +64,7 @@ function Graph1() {
 
   const COLORS = ['#FF8042', '#0088FE', '#00C49F', '#FFBB28'];
   return (
-    <PieChart width={400} height={500}>
+    <PieChart width={900} height={500}>
       <Pie
         data={data}
         dataKey="value"
@@ -80,7 +81,8 @@ function Graph1() {
         ))}
       </Pie>
       <Pie data={data2} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={110} outerRadius={130} fill="#82ca9d" label />
-      <Tooltip />
+      <Tooltip content={<CustomTooltip />} />
+      {/* <Legend align="right" layout="vertical" verticalAlign="middle" /> */}
     </PieChart>
   );
 }

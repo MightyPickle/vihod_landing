@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph1 from '../rechartComponents/Graph1';
+import Graph1 from '../rechartComponents/OrientationGraph';
 import { Column, FlexSection } from './Style';
 
 function PortraitInformation() {
