@@ -41,7 +41,7 @@ function DataContextProvider({ children }: { children: any }) {
             setPortraitData(newPortraitData);
           });
       }
-    }, 4300);
+    }, 4400);
     return () => {
       clearTimeout(id);
     };
