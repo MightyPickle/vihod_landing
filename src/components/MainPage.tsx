@@ -5,6 +5,7 @@ import Path1 from './PathElems/Path1';
 import Path2 from './PathElems/Path2';
 import PortraitInformation from './PortraitInformation/PortraitInformation';
 import { useDataContext } from '../context/dataContext';
+import FriendsGraph from './rechartComponents/Social/FriendsGraph';
 
 const Container = styled(motion.div)`
 width: 100vw;
@@ -25,13 +26,14 @@ border: 1px solid rgba(244, 243, 238, 1);
 width: 100%;
 height: 100%;
 padding: 20px;
+overflow: scroll
 
 `;
 
 function MainPage() {
-  // const { regionData } = useDataContext();
-  // // eslint-disable-next-line no-console
-  // console.log(regionData);
+  const { regionData } = useDataContext();
+  // eslint-disable-next-line no-console
+  console.log(regionData);
   return (
     <Container
       initial={{ opacity: 0 }}
@@ -42,6 +44,7 @@ function MainPage() {
       <Wrapper>
         <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
         <PortraitInformation />
+        <FriendsGraph />
       </Wrapper>
 
     </Container>
