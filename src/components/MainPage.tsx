@@ -5,7 +5,6 @@ import Path1 from './PathElems/Path1';
 import Path2 from './PathElems/Path2';
 import PortraitInformation from './PortraitInformation/PortraitInformation';
 import { useDataContext } from '../context/dataContext';
-import FriendsGraph from './rechartComponents/Social/FriendsGraph';
 
 const Container = styled(motion.div)`
 width: 100vw;
@@ -44,7 +43,6 @@ function MainPage() {
       <Wrapper>
         <h1>Доклад о положении ЛГБТ+ людей в России в 2022 году</h1>
         <PortraitInformation />
-        <FriendsGraph />
       </Wrapper>
 
     </Container>
