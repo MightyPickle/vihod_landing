@@ -51,11 +51,11 @@ function Education() {
         Как и в исследованиях «Выхода» и «Сферы», наши участники преимущественно имеют высшее образование или находятся в процессе его получения
       </StyledNote>
       <MinWrapper>
-        <h3>
+        <h4>
           Сравнение образования
           {' '}
           {getTitle(activeTab)}
-        </h3>
+        </h4>
         {content}
         <Tabs>
           {tabs.map((el) => <Tab isActive={el === activeTab} key={el} onClick={() => onTabClick(el)}>{getButtonTitle(el)}</Tab>)}

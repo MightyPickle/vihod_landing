@@ -20,11 +20,11 @@ function PortraitInformation() {
         </Column>
       </FlexSection>
       <FlexSection>
-        <h2>Образование</h2>
+        <h3>Образование</h3>
         <Education />
       </FlexSection>
       <FlexSection>
-        <h2>Степень открытости и круг обращения</h2>
+        <h3>Степень открытости и круг обращения</h3>
         <div>{/* тут должен быть текст */}</div>
         <FriendsGraph />
       </FlexSection>

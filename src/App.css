@@ -25,12 +25,19 @@
   }
   
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'HelveticaNeueBold';
+  font-family: 'HelveticaNeueBold', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h1 {
+  font-size: 52px;
 }
 
 p, text {
-	font-family: 'Stolzl-Regular'; 
+	font-family: 'Stolzl-Regular', sans-serif;
 }
+
 body {
   --accent: #969AFF;
   --light: #f4f3ee;
