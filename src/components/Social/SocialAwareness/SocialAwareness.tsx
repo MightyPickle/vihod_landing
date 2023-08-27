@@ -31,7 +31,7 @@ function SocialAwareness() {
   const totalCis = cisTransData.cisData.length;
   const totalTrans = cisTransData.transData.length;
   return (
-    <FlexSection>
+    <FlexSection style={{ marginBottom: '32px' }}>
       <Column $flexDirection="column" $flex={1}>
         <h4>
           {activeTab.title}
