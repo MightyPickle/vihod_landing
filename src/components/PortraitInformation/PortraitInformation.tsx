@@ -5,12 +5,14 @@ import QuoteBlock, {
 } from './Style';
 import Education from '../Education/Education';
 import FriendsGraph from '../rechartComponents/Social/FriendsGraph';
+import StatisticCard from '../StatisticCard/StatisticCard';
 import { StyledNote } from '../Note/Style';
 import { Wrapper } from '../Education/Style';
 
 function PortraitInformation() {
   return (
     <>
+      <StatisticCard />
       <TitleWrapper>
         <h2>Демографический портрет участников опроса</h2>
       </TitleWrapper>
