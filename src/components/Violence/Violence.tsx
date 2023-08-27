@@ -1,30 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import QuoteBlock, { Column, FlexSection, TitleWrapper } from '../PortraitInformation/Style';
 import { Count, Title } from '../StatisticCard/Style';
 
 function Violence() {
   const [count, setCount] = useState(0);
   const targetCount = 1955;
-  const duration = 10;
+  const duration = 2000;
+
+  const targetRef = useRef(null);
 
   useEffect(() => {
-    const startTime = Date.now();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const startTime = Date.now();
 
-    const updateCount = () => {
-      const currentTime = Date.now();
-      const elapsedTime = currentTime - startTime;
+          const updateCount = () => {
+            const currentTime = Date.now();
+            const elapsedTime = currentTime - startTime;
 
-      if (elapsedTime >= duration) {
-        setCount(targetCount);
-      } else {
-        const increment = Math.floor((targetCount / duration) * elapsedTime);
-        setCount(increment);
-        requestAnimationFrame(updateCount);
+            if (elapsedTime >= duration) {
+              setCount(targetCount);
+            } else {
+              const increment = Math.floor((targetCount / duration) * elapsedTime);
+              setCount(increment);
+              requestAnimationFrame(updateCount);
+            }
+          };
+
+          updateCount();
+        }
+      },
+      { threshold: 0.5 }, // Adjust the threshold as needed
+    );
+
+    if (targetRef.current) {
+      observer.observe(targetRef.current);
+    }
+    return () => {
+      if (targetRef.current) {
+        observer.unobserve(targetRef.current);
       }
     };
-
-    updateCount();
   }, []);
+
+
   return (
     <>
       <TitleWrapper>
@@ -54,7 +74,7 @@ function Violence() {
             ориентации и/или трансгендерности
           </p>
           <Title>
-            <Count>
+            <Count ref={targetRef}>
               {' '}
               {`30%, ${count} человек`}
             </Count>
