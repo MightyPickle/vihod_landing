@@ -4,9 +4,10 @@ import QuoteBlock, {
   Column, FlexSection, SectionsWrapper, TitleWrapper,
 } from './Style';
 import Education from '../Education/Education';
-import SocialAwareness from '../Social/SocialAwareness';
+import SocialAwareness from '../Social/SocialAwareness/SocialAwareness';
 import { Wrapper } from '../Education/Style';
 import StatisticCard from '../StatisticCard/StatisticCard';
+import SocialCircle from '../Social/SocialCircle/SocialCircle';
 
 function PortraitInformation() {
   return (
@@ -45,6 +46,7 @@ function PortraitInformation() {
         <FlexSection $flexDirection="column">
           <h3>Степень открытости и круг обращения</h3>
           <SocialAwareness />
+          <SocialCircle />
         </FlexSection>
 
         <FlexSection>
