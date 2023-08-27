@@ -3,10 +3,12 @@ import OrientationGraph from '../rechartComponents/Orientation/OrientationGraph'
 import { Column, FlexSection } from './Style';
 import Education from '../Education/Education';
 import FriendsGraph from '../rechartComponents/Social/FriendsGraph';
+import StatisticCard from '../StatisticCard/StatisticCard';
 
 function PortraitInformation() {
   return (
     <>
+      <StatisticCard />
       <h2>Демографический портрет участников опроса</h2>
       <FlexSection>
         <Column>

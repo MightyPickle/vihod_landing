@@ -34,8 +34,26 @@ h1 {
   font-size: 52px;
 }
 
-p, text {
+p, text, div, li {
 	font-family: 'Stolzl-Regular', sans-serif;
+}
+
+ul {
+  list-style-type: none; /* Убираем стандартные маркеры */
+  padding-left: 20px; /* Даем немного отступа слева */
+}
+
+ul li {
+  position: relative; /* Необходимо для псевдоэлемента */
+  padding-left: 20px; /* Отступ справа от маркера */
+  margin-bottom: 10px; /* Пространство между элементами списка */
+}
+
+ul li::before {
+  color: #969AFF;
+  content: '•'; /* Здесь можно указать другой текст (символ) */
+  position: absolute;
+  left: 0;
 }
 
 body {

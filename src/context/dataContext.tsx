@@ -219,6 +219,7 @@ function DataContextProvider({ children }: { children: any }) {
     <DataContext.Provider value={{
       setData,
       data,
+      countAnswers: data.length,
       filteredDiscriminationData,
       ...filteredPortraitData,
     }}
