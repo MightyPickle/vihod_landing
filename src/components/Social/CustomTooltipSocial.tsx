@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomTooltipWrapper } from '../styledTooltipWrapper';
+import { CustomTooltipWrapper } from '../rechartComponents/styledTooltipWrapper';
 
 function CustomTooltipSocial({ active, payload, label }) {
   if (active) {

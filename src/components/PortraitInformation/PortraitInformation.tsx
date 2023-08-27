@@ -2,7 +2,8 @@ import React from 'react';
 import OrientationGraph from '../rechartComponents/Orientation/OrientationGraph';
 import { Column, FlexSection } from './Style';
 import Education from '../Education/Education';
-import FriendsGraph from '../rechartComponents/Social/FriendsGraph';
+import FriendsGraph from '../Social/FriendsGraph';
+import SocialAwareness from '../Social/SocialAwareness';
 
 function PortraitInformation() {
   return (
@@ -25,8 +26,8 @@ function PortraitInformation() {
       </FlexSection>
       <FlexSection>
         <h2>Степень открытости и круг обращения</h2>
-        <div>{/* тут должен быть текст */}</div>
-        <FriendsGraph />
+        <SocialAwareness />
+        {/* <FriendsGraph /> */}
       </FlexSection>
       <p>
         Трансгендерные люди составляют 18% от всех респондентов. Статистически
