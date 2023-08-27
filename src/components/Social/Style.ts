@@ -14,5 +14,5 @@ export const Tab = styled.button<{ isActive: boolean }>`
 export const StyledAreaChart = styled(AreaChart)`
   height: fit-content !important;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
 `;

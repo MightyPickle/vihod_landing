@@ -32,7 +32,7 @@ function SocialAwareness() {
   const totalTrans = cisTransData.transData.length;
   return (
     <FlexSection>
-      <MinWrapper>
+      <Column $flexDirection="column" $flex={1}>
         <h4>
           {activeTab.title}
         </h4>
@@ -40,7 +40,7 @@ function SocialAwareness() {
         <Tabs>
           {Object.keys(tabs).map((el) => <Tab isActive={tabs[el].tabName === activeTab.tabName} onClick={() => setActiveTab(tabs[el])}>{tabs[el].tabName}</Tab>)}
         </Tabs>
-      </MinWrapper>
+      </Column>
       <Column $flexDirection="column">
         <p>
           ЛГБТ+ люди гораздо чаще делают каминг-ауты перед друзьями, нежели перед

@@ -39,8 +39,8 @@ function SocialGraph({ awareData, totalCis, totalTrans }) {
     ];
     return (
       <StyledAreaChart
-        width={600}
-        height={250}
+        width={700}
+        height={350}
         data={data}
         margin={{
           top: 20,
