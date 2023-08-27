@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const id = setTimeout(() => {
       setShow(false);
-    }, 0);
+    }, 4300);
     return () => {
       clearTimeout(id);
     };
