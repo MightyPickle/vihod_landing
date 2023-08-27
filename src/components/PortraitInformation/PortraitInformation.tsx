@@ -8,6 +8,7 @@ import SocialAwareness from '../Social/SocialAwareness';
 import { Wrapper } from '../Education/Style';
 import StatisticCard from '../StatisticCard/StatisticCard';
 import { StyledNote } from '../Note/Style';
+import Violence from '../Violence/Violence';
 
 function PortraitInformation() {
   return (
@@ -82,17 +83,7 @@ function PortraitInformation() {
             </FlexSection>
           </Wrapper>
         </FlexSection>
-        <TitleWrapper>
-          <h2>Насилие и нападения на почве ненависти</h2>
-        </TitleWrapper>
-        <FlexSection>
-          <Column>
-            <p>
-              Трансгендерные люди гораздо уязвимее и сталкиваются практически со всеми видами насилия и дискриминации гораздо чаще, чем цисгендерные респонденты. Исключение составляют только шантаж и вымогательства, от них чаще страдают гомосексуальные цисгендерные мужчины, преимущественно пользователи
-              «Хорнета».
-            </p>
-          </Column>
-        </FlexSection>
+        <Violence />
       </SectionsWrapper>
     </>
   );
