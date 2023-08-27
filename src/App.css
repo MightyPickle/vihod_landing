@@ -38,7 +38,12 @@ p, text, div, li {
 	font-family: 'Stolzl-Regular', sans-serif;
 }
 
-ul {
+
+button {
+  font-family: 'Stolzl-Regular', sans-serif;
+}
+
+  ul {
   list-style-type: none; /* Убираем стандартные маркеры */
   padding-left: 20px; /* Даем немного отступа слева */
 }
@@ -57,6 +62,7 @@ ul li::before {
 }
 
 body {
+  font-family: 'Stolzl-Regular', sans-serif;
   --accent: #969AFF;
   --light: #f4f3ee;
   --dark: #413a2e;
