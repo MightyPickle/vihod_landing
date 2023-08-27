@@ -39,11 +39,17 @@ position: relative;
   display: none;
 }
 transition: .5s ease;
+
+  .recharts-tooltip-wrapper {
+    p {
+         color: rgba(65, 58, 46, 0.59)
+    }
+  }
 `;
 
 const ScrollProgress = styled(motion.div)`
 position: fixed;
-top: 0px;
+top: 0;
 left: 0;
 right: 0;
 height: 15px;
@@ -51,7 +57,7 @@ background: rgba(150, 154, 255, 0.42);
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(1.6px);
 -webkit-backdrop-filter: blur(1.6px);
-transform-origin: 0%;
+transform-origin: 0;
 `;
 
 function MainPage() {
