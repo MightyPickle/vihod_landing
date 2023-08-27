@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { MinWrapper, Wrapper } from '../Education/Style';
-import { StyledNote } from '../Note/Style';
+import { MinWrapper } from '../Education/Style';
 import FriendsGraph from './FriendsGraph';
 import { UserPortraitQuestions } from '../../data/enums/portrait/enumQuestionsPortrait';
 import { useDataContext } from '../../context/dataContext';
-import FamilyGrapgh from './FamilyGrapgh';
+import FamilyGraph from './FamilyGrapgh';
 import SchoolAndWorkGraph from './SchoolAndWorkGraph';
 import { Tab, Tabs } from './Style';
 import { Column, FlexSection } from '../PortraitInformation/Style';
@@ -18,7 +17,7 @@ const tabs = {
   [UserPortraitQuestions.FAMILY_AWARE_OF_LGBT]: {
     title: 'Открытость родственникам',
     tabName: 'Родственники',
-    Graph: FamilyGrapgh,
+    Graph: FamilyGraph,
   },
   [UserPortraitQuestions.CLASSMATES_COLLEAGUES_AWARE_OF_LGBT]: {
     title: 'Открытость в учебном/рабочем коллестиве',
@@ -32,7 +31,6 @@ function SocialAwareness() {
   const totalCis = cisTransData.cisData.length;
   const totalTrans = cisTransData.transData.length;
   return (
-    // <Wrapper>
     <FlexSection>
       <MinWrapper>
         <h4>
@@ -54,7 +52,6 @@ function SocialAwareness() {
         </p>
       </Column>
     </FlexSection>
-    // </Wrapper>
   );
 }
 

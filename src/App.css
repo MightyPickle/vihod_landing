@@ -38,7 +38,12 @@ p, text {
 	font-family: 'Stolzl-Regular', sans-serif;
 }
 
+button {
+  font-family: 'Stolzl-Regular', sans-serif;
+}
+
 body {
+  font-family: 'Stolzl-Regular', sans-serif;
   --accent: #969AFF;
   --light: #f4f3ee;
   --dark: #413a2e;

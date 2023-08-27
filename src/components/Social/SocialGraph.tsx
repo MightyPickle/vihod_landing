@@ -6,6 +6,7 @@ import { filterDataByEnum } from '../../data/utils/filterDataByEnum';
 import { NO, YES } from '../../data/const';
 import CustomTooltipSocial from './CustomTooltipSocial';
 import { UserPortraitQuestions } from '../../data/enums/portrait/enumQuestionsPortrait';
+import { StyledAreaChart } from './Style';
 
 function SocialGraph({ awareData, totalCis, totalTrans }) {
   if (awareData) {
@@ -37,9 +38,9 @@ function SocialGraph({ awareData, totalCis, totalTrans }) {
 
     ];
     return (
-      <AreaChart
+      <StyledAreaChart
         width={600}
-        height={400}
+        height={250}
         data={data}
         margin={{
           top: 20,
@@ -64,7 +65,7 @@ function SocialGraph({ awareData, totalCis, totalTrans }) {
         <Tooltip content={<CustomTooltipSocial />} />
         <Area type="monotone" dataKey="cis" stroke="#8884d8" fill="url(#colorCis)" />
         <Area type="monotone" dataKey="trans" stroke="#82ca9d" fill="url(#colorTrans)" />
-      </AreaChart>
+      </StyledAreaChart>
     );
   }
 }
