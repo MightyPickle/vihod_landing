@@ -29,6 +29,8 @@ function Violence() {
           };
 
           updateCount();
+          // observer.unobserve(entry.target);
+        //   если захотим только один раз
         }
       },
       { threshold: 0.5 }, // Adjust the threshold as needed
@@ -43,7 +45,6 @@ function Violence() {
       }
     };
   }, []);
-
 
   return (
     <>
