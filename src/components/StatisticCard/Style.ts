@@ -49,6 +49,9 @@ export const ListWrapper = styled.ul`
     padding-left: 20px;
     margin-bottom: 8px;
     text-decoration: underline #969AFF;
+    font-size: 24px;
+  }
+  li {
     font-size: 20px;
   }
 `;

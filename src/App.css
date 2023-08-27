@@ -43,6 +43,10 @@ button {
   font-family: 'Stolzl-Regular', sans-serif;
 }
 
+*:focus-visible, *:focus {
+  outline: none;
+}
+
   ul {
   list-style-type: none; /* Убираем стандартные маркеры */
   padding-left: 20px; /* Даем немного отступа слева */
