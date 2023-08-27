@@ -10,6 +10,7 @@ import { Wrapper } from '../Education/Style';
 function PortraitInformation() {
   return (
     <>
+      <StatisticCard />
       <TitleWrapper>
         <h2>Демографический портрет участников опроса</h2>
       </TitleWrapper>
