@@ -1,8 +1,9 @@
 import { styled } from 'styled-components';
 import React from 'react';
 
-export const FlexSection = styled.div`
+export const FlexSection = styled.div<{ $flexDirection?: string }>`
   display: flex;
+  flex-direction: ${(props) => props.$flexDirection || 'row'};
   justify-content: center;
   align-items: center;
   align-content: center;

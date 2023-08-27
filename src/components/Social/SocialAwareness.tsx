@@ -7,6 +7,7 @@ import { useDataContext } from '../../context/dataContext';
 import FamilyGrapgh from './FamilyGrapgh';
 import SchoolAndWorkGraph from './SchoolAndWorkGraph';
 import { Tab, Tabs } from './Style';
+import { Column, FlexSection } from '../PortraitInformation/Style';
 
 const tabs = {
   [UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT]: {
@@ -31,19 +32,29 @@ function SocialAwareness() {
   const totalCis = cisTransData.cisData.length;
   const totalTrans = cisTransData.transData.length;
   return (
-    <Wrapper>
+    // <Wrapper>
+    <FlexSection>
       <MinWrapper>
-
         <h4>
-          Открытость перед друзьями
+          {activeTab.title}
         </h4>
         <activeTab.Graph awareData={awareData} totalTrans={totalTrans} totalCis={totalCis} />
         <Tabs>
           {Object.keys(tabs).map((el) => <Tab isActive={tabs[el].tabName === activeTab.tabName} onClick={() => setActiveTab(tabs[el])}>{tabs[el].tabName}</Tab>)}
-
         </Tabs>
       </MinWrapper>
-    </Wrapper>
+      <Column $flexDirection="column">
+        <p>
+          ЛГБТ+ люди гораздо чаще делают каминг-ауты перед друзьями, нежели перед
+          родственниками, коллегами, однокурсниками или одноклассниками.
+        </p>
+        <p>
+          Трансгендерные персоны чаще оказываются более открытыми, поскольку,
+          как можно предположить, им сложнее скрывать свою трансгендерность от окружающих.
+        </p>
+      </Column>
+    </FlexSection>
+    // </Wrapper>
   );
 }
 
