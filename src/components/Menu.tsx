@@ -34,12 +34,15 @@ const spring = {
 
 function Menu({ isDark, onClick }: { isDark: boolean; onClick: () => void }) {
   return (
-    <MenuBar $dark={isDark}>
-      <motion.div className="switch" data-isOn={isDark} onClick={onClick}>
-        <Handle $dark={isDark} layout transition={spring} />
-      </motion.div>
-      <Donate />
-    </MenuBar>
+    <div style={{ width: '100%', display: 'flex' }}>
+
+      <MenuBar $dark={isDark}>
+        <motion.div className="switch" data-isOn={isDark} onClick={onClick}>
+          <Handle $dark={isDark} layout transition={spring} />
+        </motion.div>
+        <Donate />
+      </MenuBar>
+    </div>
   );
 }
 

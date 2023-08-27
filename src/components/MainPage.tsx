@@ -11,7 +11,7 @@ import Menu from './Menu';
 const Container = styled(motion.div)<{ $dark: boolean }>`
 width: 100vw;
 height: 100vh;
-padding: 10px 60px 20px 60px;
+padding: 15px 60px 20px 60px;
 background: white;
 position: relative;
 overflow: hidden;
@@ -32,7 +32,7 @@ backdrop-filter: blur(5.8px);
 -webkit-backdrop-filter: blur(5.8px);
 width: 100%;
 height: 100%;
-padding: 30px;
+padding: 30px 60px;
 overflow: scroll;
 position: relative;
 &::-webkit-scrollbar {
