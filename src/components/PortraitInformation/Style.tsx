@@ -6,7 +6,7 @@ export const FlexSection = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin: 20px;
+  margin: 0px 20px;
   flex-wrap: wrap;
 `;
 

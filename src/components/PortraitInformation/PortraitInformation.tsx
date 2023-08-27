@@ -35,7 +35,7 @@ function PortraitInformation() {
         </Column>
       </FlexSection>
       <FlexSection>
-        <h2>Образование</h2>
+        <h3>Образование</h3>
         <Education />
       </FlexSection>
       <h2>Степень открытости и круг обращения</h2>
