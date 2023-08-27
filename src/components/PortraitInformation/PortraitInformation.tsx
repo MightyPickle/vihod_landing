@@ -6,6 +6,7 @@ import QuoteBlock, {
 import Education from '../Education/Education';
 import SocialAwareness from '../Social/SocialAwareness';
 import { Wrapper } from '../Education/Style';
+import StatisticCard from '../StatisticCard/StatisticCard';
 
 function PortraitInformation() {
   return (

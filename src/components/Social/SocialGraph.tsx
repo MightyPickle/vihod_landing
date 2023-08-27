@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ResponsiveContainer, AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip,
+  Area, CartesianGrid, XAxis, YAxis, Tooltip,
 } from 'recharts';
 import { filterDataByEnum } from '../../data/utils/filterDataByEnum';
 import { NO, YES } from '../../data/const';
