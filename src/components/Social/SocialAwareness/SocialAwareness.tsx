@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { MinWrapper } from '../Education/Style';
+import { MinWrapper } from '../../Education/Style';
 import FriendsGraph from './FriendsGraph';
-import { UserPortraitQuestions } from '../../data/enums/portrait/enumQuestionsPortrait';
-import { useDataContext } from '../../context/dataContext';
+import { UserPortraitQuestions } from '../../../data/enums/portrait/enumQuestionsPortrait';
+import { useDataContext } from '../../../context/dataContext';
 import FamilyGraph from './FamilyGrapgh';
 import SchoolAndWorkGraph from './SchoolAndWorkGraph';
-import { Tab, Tabs } from './Style';
-import { Column, FlexSection } from '../PortraitInformation/Style';
+import { Tab, Tabs } from '../Style';
+import { Column, FlexSection } from '../../PortraitInformation/Style';
 
 const tabs = {
   [UserPortraitQuestions.FRIENDS_AWARE_OF_LGBT]: {

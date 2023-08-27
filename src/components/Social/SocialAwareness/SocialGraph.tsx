@@ -2,11 +2,11 @@ import React from 'react';
 import {
   Area, CartesianGrid, XAxis, YAxis, Tooltip,
 } from 'recharts';
-import { filterDataByEnum } from '../../data/utils/filterDataByEnum';
-import { NO, YES } from '../../data/const';
-import CustomTooltipSocial from './CustomTooltipSocial';
-import { UserPortraitQuestions } from '../../data/enums/portrait/enumQuestionsPortrait';
-import { StyledAreaChart } from './Style';
+import { filterDataByEnum } from '../../../data/utils/filterDataByEnum';
+import { NO, YES } from '../../../data/const';
+import CustomTooltipSocial from '../CustomTooltipSocial';
+import { UserPortraitQuestions } from '../../../data/enums/portrait/enumQuestionsPortrait';
+import { StyledAreaChart } from '../Style';
 
 function SocialGraph({ awareData, totalCis, totalTrans }) {
   if (awareData) {

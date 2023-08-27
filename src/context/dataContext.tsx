@@ -168,6 +168,18 @@ function DataContextProvider({ children }: { children: any }) {
     return regionObjData;
   }, {});
 
+  const socialCircleDataByRegion = Object.entries(regionData).reduce((regionObjData, regionEntry) => {
+    const region = regionEntry[0];
+    const dataArray = regionEntry[1];
+    return {
+      ...regionObjData,
+      [region]: {
+        socialCircleMainlyLGBT: filterDataByEnum(dataArray, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircle.LGBT_PLUS).length,
+        socialCircleMainlyHeteroCis: filterDataByEnum(dataArray, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircle.HETERO_CIS).length,
+        socialCircleEqual: filterDataByEnum(dataArray, UserPortraitQuestions.SOCIAL_CIRCLE_LGBT, SocialCircle.EQUAL_MIX).length,
+      },
+    };
+  }, {});
   // Дискриминация
   // Учеба/работа
   const employmentDiscriminationData = {
@@ -212,6 +224,7 @@ function DataContextProvider({ children }: { children: any }) {
     awareData,
     socialCircleData,
     socialCircleAttitudeData,
+    socialCircleDataByRegion,
   };
 
   return (
