@@ -1,13 +1,15 @@
 import { styled } from 'styled-components';
 import React from 'react';
 
-export const FlexSection = styled.div`
+export const FlexSection = styled.div<{ $flexDirection?: string }>`
   display: flex;
+  flex-direction: ${(props) => props.$flexDirection || 'row'};
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin: 0px 20px;
+  margin: 0 20px;
   flex-wrap: wrap;
+  gap: 8px
 `;
 
 export const Column = styled.div<{ $flex?: number ; $flexDirection?: string }>`
@@ -34,6 +36,11 @@ text-align: right;
 font-style: normal;
 padding-top: 15px;
 `;
+
+export const SectionsWrapper = styled.div`
+display: flex;
+flex-direction: column;
+gap: 20px`;
 
 export const Block = styled.div<{ $margin?: string }>`
 margin: ${(props) => props.$margin || 0};

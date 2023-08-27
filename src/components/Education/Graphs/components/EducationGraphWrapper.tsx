@@ -11,10 +11,10 @@ type Props = {
 
 function EducationGraphWrapper({ children, data }: Props) {
   return (
-    <StylesBarChart width={600} height={250} data={data}>
+    <StylesBarChart width={600} height={450} data={data}>
       <XAxis dataKey="name" tick={false} />
       <Tooltip />
-      <Legend verticalAlign="top" height={36} />
+      <Legend verticalAlign="top" />
       {children}
     </StylesBarChart>
   );

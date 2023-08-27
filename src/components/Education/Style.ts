@@ -40,4 +40,12 @@ export const StylesBarChart = styled(BarChart)`
   height: fit-content !important;
   max-width: 100%;
   overflow-x: auto;
+  
+  .recharts-tooltip-item-list {
+    font-size: 12px;
+    
+    li {
+      margin: 0;
+    }
+  }
 `;
