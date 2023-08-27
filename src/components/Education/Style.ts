@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { BarChart } from 'recharts';
 
 export const Tabs = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ export const Wrapper = styled.div`
   background-color: rgba(205, 207, 255, 0.25);
   padding: 10px;
   border-radius: 10px;
+  width: 100%;
 `;
 
 export const MinWrapper = styled.div`
@@ -31,4 +33,11 @@ export const MinWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex: 2;
-  `;
+  max-width: 100%;
+`;
+
+export const StylesBarChart = styled(BarChart)`
+  height: fit-content !important;
+  max-width: 100%;
+  overflow-x: auto;
+`;
