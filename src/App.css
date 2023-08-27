@@ -41,6 +41,7 @@ p, text, div, li {
 
 button {
   font-family: 'Stolzl-Regular', sans-serif;
+}
 
   ul {
   list-style-type: none; /* Убираем стандартные маркеры */
