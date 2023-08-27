@@ -1,12 +1,11 @@
 import React from 'react';
 import OrientationGraph from '../rechartComponents/Orientation/OrientationGraph';
 import QuoteBlock, {
-  Column, FlexSection, Quote, TitleWrapper,
+  Column, FlexSection, TitleWrapper,
 } from './Style';
 import Education from '../Education/Education';
 import FriendsGraph from '../rechartComponents/Social/FriendsGraph';
 import StatisticCard from '../StatisticCard/StatisticCard';
-import { StyledNote } from '../Note/Style';
 import { Wrapper } from '../Education/Style';
 
 function PortraitInformation() {
