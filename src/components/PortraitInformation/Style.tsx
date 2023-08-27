@@ -28,12 +28,7 @@ margin: 20px;
 
 export const Quote = styled.div`
 padding: 10px;
-background-color: rgba(65,58,46, .25);
-border-radius: 0 10px;
 font-style: italic;
-width: 70%;
-// box-shadow: 10px 5px 5px rgba(65,58,46, .5);
-box-shadow: rgba(65,58,46, .5) 0 5px 10px 1px;
 `;
 
 export const Author = styled.div`
@@ -47,14 +42,25 @@ display: flex;
 flex-direction: column;
 gap: 20px`;
 
-function QuoteBlock({ text, author }) {
+export const Block = styled.div<{ $margin?: string }>`
+margin: ${(props) => props.$margin || 0};
+display: flex;
+justify-content: center;
+background-color: rgba(65,58,46, .15);
+border-radius: 0px 10px;
+box-shadow: rgba(65,58,46, .5) 0 5px 10px 1px;
+`;
+
+function QuoteBlock({ text, author, margin }) {
   return (
-    <Quote>
-      {text}
-      <Author>
-        {author}
-      </Author>
-    </Quote>
+    <Block $margin={margin}>
+      <Quote>
+        {text}
+        <Author>
+          {author}
+        </Author>
+      </Quote>
+    </Block>
   );
 }
 
