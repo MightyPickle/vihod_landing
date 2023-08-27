@@ -3,8 +3,6 @@ import { CustomTooltipWrapper } from '../rechartComponents/styledTooltipWrapper'
 
 function CustomTooltipSocial({ active, payload, label }) {
   if (active) {
-    console.log(payload);
-
     return (
       <CustomTooltipWrapper>
         <p style={{ color: payload[0].stroke }}>
