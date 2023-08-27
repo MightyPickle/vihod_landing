@@ -39,7 +39,7 @@ export const MinWrapper = styled.div`
 export const StylesBarChart = styled(BarChart)`
   height: fit-content !important;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   
   .recharts-tooltip-item-list {
     font-size: 12px;

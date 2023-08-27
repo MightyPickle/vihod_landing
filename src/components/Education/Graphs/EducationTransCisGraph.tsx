@@ -33,8 +33,8 @@ function EducationTransCisGraph({ educationData }: Props) {
 
   return (
     <EducationGraphWrapper data={data}>
-      <Bar dataKey="Цисгендер" fill="#979AFF" />
-      <Bar dataKey="Трансперсоны" fill="#961AFF" />
+      <Bar dataKey="Цисгендер" fill="#5BCEFA" />
+      <Bar dataKey="Трансперсоны" fill="#F5A9B8" />
     </EducationGraphWrapper>
   );
 }

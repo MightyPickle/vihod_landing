@@ -46,11 +46,11 @@ function EducationTransCisGraph({ educationData }: Props) {
   return (
     <EducationGraphWrapper data={data}>
       <Bar dataKey="Мегаполис" fill="#979AFF" />
-      <Bar dataKey="Город (от 1 млн. до 4 млн.)" fill="#961AFF" />
+      <Bar dataKey="Город (от 1 млн. до 4 млн.)" fill="#499AFF" />
       <Bar dataKey="Город (от 500 тыс. до 1 млн.)" fill="#121AFF" />
-      <Bar dataKey="Город (от 100 до 500 тыс.)" fill="#231AFF" />
+      <Bar dataKey="Город (от 100 до 500 тыс.)" fill="#24408E" />
       <Bar dataKey="Малый город (до 100 тыс.)" fill="#367AFF" />
-      <Bar dataKey="Сельское поселение" fill="#499AFF" />
+      <Bar dataKey="Сельское поселение" fill="#491afe" />
     </EducationGraphWrapper>
   );
 }
