@@ -35,12 +35,26 @@ body {
   --accent: #969AFF;
   --light: #f4f3ee;
   --dark: #413a2e;
-  background-color: var(--light);
-  color: var(--dark);
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   perspective: 500px;
+}
+
+.switch {
+  width: 80px;
+  height: 50px;
+  background-color: var(--accent);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 30px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.switch[data-isOn="true"] {
+  justify-content: flex-end;
 }

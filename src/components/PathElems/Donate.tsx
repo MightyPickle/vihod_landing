@@ -6,18 +6,18 @@ const PathEl = styled(motion.div)`
 display: flex;
 justify-content: center;
 align-items: center;
-background: rgba(150, 154, 255, 0.38);
+background: var(--accent);
 border-radius: 100%;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(4.8px);
 -webkit-backdrop-filter: blur(4.8px);
 border: 1px solid rgba(150, 154, 255, 1);
-position: absolute;
 z-index:100;
-padding: 10px;
+padding: 5px;
 overflow: hidden;
 width: 50px;
 height: 50px;
+cursor: pointer;
 `;
 
 const icon = {
@@ -34,12 +34,15 @@ const icon = {
 };
 
 function Donate() {
+  const handleClick = () => {
+    window.open('https://comingoutspb.org/support/');
+  };
   return (
-    <PathEl>
+    <PathEl onClick={handleClick}>
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
-        width="500"
-        height="500"
+        width="256"
+        height="256"
         viewBox="0 0 256 256"
       >
         <motion.defs />
